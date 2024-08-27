@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Items } from "./Items.entities";
 @Entity({name:'orders'})
 export class Order{
     @PrimaryGeneratedColumn()
@@ -12,5 +13,9 @@ export class Order{
 
     @Column()
     createAt:Date;
+
+    @OneToMany(() => Items,Items=>Items.order)
+    @JoinColumn({name:'items_id'})
+    items:Items[];
     
 }

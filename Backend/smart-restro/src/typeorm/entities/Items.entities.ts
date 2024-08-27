@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Order } from "./orders.entities";
 
 @Entity({name:'items'})
 export class Items{
@@ -22,6 +23,9 @@ division:string;
 
 @Column()
 catagories:string;
+
+@ManyToOne(()=>Order,(order)=>order.items)
+order:Order;
 
 
 
